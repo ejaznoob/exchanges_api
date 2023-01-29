@@ -1,0 +1,36 @@
+name: Update-Server
+
+# Trigger deployment only on Developer Branch
+on:
+  push:
+    branches:
+      - Developers-Branch
+
+jobs:
+  deploy:
+    name: Deploy-to-Server
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v3
+
+      - name: Deploy to Server
+        uses: crypsol786/ssh-deploy@main
+        env:
+          ARGS: "--no-o --no-g --no-perms"
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.HOST_IP }}
+          REMOTE_USER: ${{ secrets.HOST_USERNAME }}
+          TARGET: ${{ secrets.HOST_TARGET_DIR_CURRENT }}
+
+      - name: Update Server
+        uses: crypsol786/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_IP }}
+          user: ${{ secrets.HOST_USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          command: |
+            cd ${{ secrets.HOST_TARGET_DIR_CURRENT }}
+            npm install
+            docker-compose up --build --force-recreate --no-deps -d
