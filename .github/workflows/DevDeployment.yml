@@ -33,7 +33,7 @@ jobs:
     - name: Compress assets
       uses: montudor/action-zip@v1
       with:
-        args: zip -qq -r ./ zipped.zip
+        args: zip -qq -r zipped.zip .
 
     - name: deploy to Server
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
