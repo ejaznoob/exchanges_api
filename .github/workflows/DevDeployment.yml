@@ -5,9 +5,9 @@ name: ServerDeploy
 
 on:
   push:
-    branches: [ "Staging-Branch" ]
+    branches: [ "Developers-Branch" ]
   pull_request:
-    branches: [ "Staging-Branch" ]
+    branches: [ "Developers-Branch" ]
 
 jobs:
   build:
