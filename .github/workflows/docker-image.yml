@@ -28,7 +28,7 @@ jobs:
       uses: docker/setup-buildx-action@v2
 
     - name: Build and push
-      run:  docker image build  -f "docker-compose.yml"
+      run:  docker image build .
     - name: Check lists
       run: docker image ls
 
