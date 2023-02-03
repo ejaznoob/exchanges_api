@@ -12,7 +12,7 @@ services:
       PORT: 6000
       #MONGODB_URI: mongodb://mongo_container_bot:27017/
       #MONGODB_URI: mongodb://172.31.26.81:27017/
-      MONGODB_URI: mongodb+srv://robod:A9AdpZOTN3TUeb4W@cluster0.x0wpefm.mongodb.net/?retryWrites=true&w=majority
+      MONGODB_URI: mongodb+srv://robod:**********@cluster0.x0wpefm.mongodb.net/?retryWrites=true&w=majority
       DB_NAME: exchanges_live
       MYSQL_HOST: 3.132.91.164
       MYSQL_USER: paper
