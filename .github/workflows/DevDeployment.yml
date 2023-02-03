@@ -1,0 +1,58 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: ServerDeploy
+
+on:
+  push:
+    branches: [ "Staging-Branch" ]
+  pull_request:
+    branches: [ "Staging-Branch" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    environment: dev
+    strategy:
+      matrix:
+        node-version: [18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm install
+    - run: npm ci
+    - run: npm run build2 --if-present
+    - run: mkdir zipped
+
+    - name: Compress assets
+      uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r zipped/dist.zip dist
+
+    - name: deploy to Server
+      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      with:
+        username: ${{ secrets.HOST_USERNAME }}
+        server: ${{ secrets.HOST_IP }}
+        ssh_private_key: ${{ secrets.EC2_SSH_KEY }}
+        local_path: './zipped/*'
+        remote_path: ${{ secrets.HOST_TARGET_DIR_STAGING}}
+        sftp_only: true
+        sftpArgs: '-o ConnectTimeout=55'
+
+    - name: Unzip on Server
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST_IP }}
+        username: ${{ secrets.HOST_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        script: |
+          cd ${{ secrets.HOST_TARGET_DIR_STAGING }} && unzip -o dist.zip -d .
