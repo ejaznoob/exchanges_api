@@ -46,8 +46,6 @@ jobs:
         remote_path: ${{ vars.HOST_TARGET_DIR_STAGING}}
         sftp_only: true
         sftpArgs: '-o ConnectTimeout=55'
-
-
     - name: Unzip on Server
       uses: appleboy/ssh-action@v0.1.7
       with:
