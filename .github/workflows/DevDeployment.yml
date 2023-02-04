@@ -56,3 +56,5 @@ jobs:
         port: 22
         script: |
           cd ${{ vars.HOST_TARGET_DIR_STAGING }} && unzip -o zipped.zip -d .
+          docker-compose down
+          docker-compose up --build --force-recreate --no-deps  -d
