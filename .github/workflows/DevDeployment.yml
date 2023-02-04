@@ -35,6 +35,7 @@ jobs:
       with:
         args: zip -qq -r zipped/zipped.zip .
 
+
     - name: deploy to Server
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
