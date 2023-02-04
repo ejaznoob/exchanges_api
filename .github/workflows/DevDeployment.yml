@@ -39,10 +39,10 @@ jobs:
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
         username: ${{ secrets.HOST_USERNAME }}
-        server: ${{ secrets.HOST_IP }}
+        server: ${{ vars.HOST_IP }}
         ssh_private_key: ${{ secrets.EC2_SSH_KEY }}
         local_path: './zipped/*'
-        remote_path: ${{ secrets.HOST_TARGET_DIR_STAGING}}
+        remote_path: ${{ vars.HOST_TARGET_DIR_STAGING}}
         sftp_only: true
         sftpArgs: '-o ConnectTimeout=55'
 
@@ -54,4 +54,4 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          cd ${{ secrets.HOST_TARGET_DIR_STAGING }} && unzip -o dist.zip -d .
+          cd ${{ vars.HOST_TARGET_DIR_STAGING }} && unzip -o zipped.zip -d .
