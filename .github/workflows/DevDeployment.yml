@@ -69,4 +69,4 @@ jobs:
           MONGOURL=${{ secrets.MONGOURL}}
           DBNAME=${{ VARS.DBNAME}}
           PORT=${{ VARS.PORT}}
-          docker-compose -e PAPER_URL=${{ VARS.PAPER_URL}} -e MONGOURL=${{ secrets.MONGOURL}} -e DBNAME=${{ secrets.DBNAME }} -e PORT=${{ VARS.PORT }} up --build --force-recreate --no-deps  -d
+          docker-compose up --build --force-recreate --no-deps  -d
