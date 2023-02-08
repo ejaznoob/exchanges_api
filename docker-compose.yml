@@ -7,18 +7,14 @@ services:
     container_name: exchanges_api
     restart: unless-stopped
     ports:
-      - "6000:6000"
+      - "$${PORT}:$${PORT}"
     environment:
-      PORT: 6000
+      PORT: $${PORT}
       #MONGODB_URI: mongodb://mongo_container_bot:27017/
       #MONGODB_URI: mongodb://172.31.26.81:27017/
-      MONGODB_URI: mongodb+srv://robod:**********@cluster0.x0wpefm.mongodb.net/?retryWrites=true&w=majority
-      DB_NAME: exchanges_live
-      MYSQL_HOST: 3.132.91.164
-      MYSQL_USER: paper
-      MYSQL_PASS: TkPHDZu5vV&fdAk
-      MYSQL_DB: crypto_bot
-      PAPER_URL: http://23.23.217.254/
+      MONGODB_URI: $${MONGOURL}
+      DB_NAME: $${DBNAME}
+      PAPER_URL: $${PAPER_URL}
       PAPER_PORT:
     volumes:
       - exchanges_api:/data/db
