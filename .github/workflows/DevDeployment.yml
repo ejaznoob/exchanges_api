@@ -56,4 +56,8 @@ jobs:
         script: |
           cd ${{ vars.HOST_TARGET_DIR_STAGING }} && unzip -o zipped.zip -d .
           docker-compose down
-          PORT=${{ VARS.PORT}} docker-compose up --build --force-recreate --no-deps  -d
+          PAPER_URL=${{ VARS.PAPER_URL}}
+          MONGOURL=${{ secrets.MONGOURL}}
+          DBNAME=${{ VARS.DBNAME}}
+          PORT=${{ VARS.PORT}}
+          docker-compose up --build --force-recreate --no-deps  -d
