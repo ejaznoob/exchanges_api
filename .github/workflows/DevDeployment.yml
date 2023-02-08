@@ -55,6 +55,15 @@ jobs:
         port: 22
         script: |
           cd ${{ vars.HOST_TARGET_DIR_STAGING }} && unzip -o zipped.zip -d .
+
+    - name: Refresh Server
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ vars.HOST_IP }}
+        username: ${{ secrets.HOST_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: 22
+        script: |
           docker-compose down
           PAPER_URL=${{ VARS.PAPER_URL}}
           MONGOURL=${{ secrets.MONGOURL}}
