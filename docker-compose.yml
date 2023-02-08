@@ -9,12 +9,12 @@ services:
     ports:
       - "${PORT}:${PORT}"
     environment:
-      PORT: ${PORT}
+      PORT: $${PORT}
       #MONGODB_URI: mongodb://mongo_container_bot:27017/
       #MONGODB_URI: mongodb://172.31.26.81:27017/
-      MONGODB_URI: ${MONGOURL}
-      DB_NAME: ${DBNAME}
-      PAPER_URL: ${PAPER_URL}
+      MONGODB_URI: $${MONGOURL}
+      DB_NAME: $${DBNAME}
+      PAPER_URL: $${PAPER_URL}
       PAPER_PORT:
     volumes:
       - exchanges_api:/data/db
