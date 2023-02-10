@@ -71,6 +71,7 @@ jobs:
           DBNAME=${{ secrets.DBNAME}}
           PORT=${{ VARS.PORT}}
           cd ${{ vars.HOST_TARGET_DIR_STAGING }}
+          pwd
           ls
           PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME}} PAPER_URL=${{ VARS.PAPER_URL}} docker-compose down
           PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME }} PAPER_URL=${{ VARS.PAPER_URL}} docker-compose up --build --force-recreate --no-deps  -d
