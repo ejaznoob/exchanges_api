@@ -70,6 +70,5 @@ jobs:
           MONGOURL=${{ secrets.MONGOURL}}
           DBNAME=${{ secrets.DBNAME}}
           PORT=${{ VARS.PORT}}
-          cd ${{ vars.HOST_TARGET_DIR_STAGING }}
-          PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME}} PAPER_URL=${{ VARS.PAPER_URL}} docker-compose down
-          PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME }} PAPER_URL=${{ VARS.PAPER_URL}} docker-compose up --build --force-recreate --no-deps  -d
+          cd ${{ vars.HOST_TARGET_DIR_STAGING }} && PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME}} PAPER_URL=${{ VARS.PAPER_URL}} docker-compose down
+          cd ${{ vars.HOST_TARGET_DIR_STAGING }} && PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME }} PAPER_URL=${{ VARS.PAPER_URL}} docker-compose up --build --force-recreate --no-deps  -d
