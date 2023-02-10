@@ -65,7 +65,6 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         script: |
-          docker-compose down
           PAPER_URL=${{ VARS.PAPER_URL}}
           MONGOURL=${{ secrets.MONGOURL}}
           DBNAME=${{ secrets.DBNAME}}
