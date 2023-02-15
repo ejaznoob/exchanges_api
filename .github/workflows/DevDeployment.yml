@@ -35,7 +35,6 @@ jobs:
       with:
         args: zip -qq -r zipped/zipped.zip .
 
-
     - name: deploy to Server
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
@@ -46,6 +45,8 @@ jobs:
         remote_path: ${{ vars.HOST_TARGET_DIR_STAGING}}
         sftp_only: true
         sftpArgs: '-o ConnectTimeout=55'
+
+
     - name: Unzip on Server
       uses: appleboy/ssh-action@v0.1.7
       with:
@@ -69,7 +70,6 @@ jobs:
           DBNAME=${{ secrets.DBNAME}}
           PORT=${{ VARS.PORT}}
           cd ${{ vars.HOST_TARGET_DIR_STAGING }}
-          pwd
-          ls
           PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME}} PAPER_URL=${{ VARS.PAPER_URL}} docker-compose down
-          PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME }} PAPER_URL=${{ VARS.PAPER_URL}} docker-compose up --build --force-recreate --no-deps  -d
+          PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME }} PAPER_URL=${{ VARS.PAPER_URL}} PAPER_URL=${{ secrets.AWS_ACCESS_KEY_ID}}  AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}}   AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN}} docker-compose down
+          PORT=${{ VARS.PORT}} MONGOURL=${{ secrets.MONGOURL}} DBNAME=${{ secrets.DBNAME }} PAPER_URL=${{ VARS.PAPER_URL}} PAPER_URL=${{ secrets.AWS_ACCESS_KEY_ID}}  AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY}}   AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN}} docker-compose up --build --force-recreate --no-deps  -d  --log-driver=awslogs --log-opt awslogs-region=ap-southeast-1 --log-opt awslogs-group=exchangesapi
