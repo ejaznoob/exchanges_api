@@ -30,18 +30,19 @@ jobs:
     - run: npm ci
     - run: mkdir zipped
     - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1.3
+      uses: skiddph/actions-env@v1.0.2
       with:
-        envkey_COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
-        envkey_DOCKER_PORT: ${{ VARS.DOCKER_PORT}}
-        envkey_MONGOURL: ${{ secrets.MONGOURL}}
-        envkey_PAPER_URL: ${{ VARS.PAPER_URL}}
-        envkey_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
-        envkey_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        envkey_AWS_AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN}}
-        directory: './'
-        file_name: .env
-        fail_on_empty: false
+        file: .env
+        prefix: 'ENV_'
+        env:
+          ENV_COINMARKETCAP_API_KEY: ${{ secrets.COINMARKETCAP_API_KEY }}
+          ENV_DOCKER_PORT: ${{ VARS.DOCKER_PORT}}
+          ENV_MONGOURL: ${{ secrets.MONGOURL}}
+          ENV_PAPER_URL: ${{ VARS.PAPER_URL}}
+          ENV_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          ENV_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          ENV_AWS_AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN}}
+
     - name: Compress assets
       uses: montudor/action-zip@v1
       with:
