@@ -7,16 +7,15 @@ services:
     container_name: exchanges_api
     restart: unless-stopped
     ports:
-      - ${PORT}:${PORT}
+      - ${DOCKER_PORT}:${DOCKER_PORT}
     environment:
-      PORT: $${PORT}
+      PORT: ${DOCKER_PORT}
       #MONGODB_URI: mongodb://mongo_container_bot:27017/
       #MONGODB_URI: mongodb://172.31.26.81:27017/
-      MONGODB_URI: $${MONGOURL}
-      DB_NAME: $${DBNAME}
-      PAPER_URL: $${PAPER_URL}
-      AWS_ACCESS_KEY_ID: $${AWS_ACCESS_KEY_ID}
-      AWS_SECRET_ACCESS_KEY: $${AWS_SECRET_ACCESS_KEY}
+      MONGODB_URI: ${MONGOURL}
+      PAPER_URL: ${PAPER_URL}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       PAPER_PORT:
     volumes:
       - exchanges_api:/data/db
