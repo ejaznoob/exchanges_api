@@ -33,7 +33,7 @@ jobs:
       uses: SpicyPizza/create-envfile@v1.3
       with:
         envkey_COINMARKETCAP_API_KEY=: ${{ secrets.COINMARKETCAP_API_KEY }}
-        envkey_PORT: ${{ VARS.PORT}}
+        envkey_PORT: ${{ VARS.DOCKER_PORT}}
         envkey_MONGOURL: ${{ secrets.MONGOURL}}
         envkey_PAPER_URL: ${{ VARS.PAPER_URL}}
         envkey_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
@@ -57,7 +57,6 @@ jobs:
         remote_path: ${{ vars.HOST_TARGET_DIR_STAGING}}
         sftp_only: true
         sftpArgs: '-o ConnectTimeout=55'
-
 
     - name: Unzip on Server
       uses: appleboy/ssh-action@v0.1.7
