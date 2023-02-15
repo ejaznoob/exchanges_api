@@ -7,7 +7,7 @@ services:
     container_name: exchanges_api
     restart: unless-stopped
     ports:
-      - ${DOCKER_PORT}:${DOCKER_PORT}
+      - ${PORT}:${PORT}
     environment:
       PORT: ${DOCKER_PORT}
       #MONGODB_URI: mongodb://mongo_container_bot:27017/
