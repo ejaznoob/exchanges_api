@@ -15,6 +15,8 @@ services:
       MONGODB_URI: ${MONGOURL}
       DB_NAME: ${DBNAME}
       PAPER_URL: ${PAPER_URL}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       PAPER_PORT:
     volumes:
       - exchanges_api:/data/db
