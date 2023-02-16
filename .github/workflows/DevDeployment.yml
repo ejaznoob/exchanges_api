@@ -83,4 +83,4 @@ jobs:
           PORT=${{ VARS.PORT}}
           cd ${{ vars.HOST_TARGET_DIR_STAGING }}
           sudo docker compose down
-          sudo docker compose up
+          sudo docker compose up -d
