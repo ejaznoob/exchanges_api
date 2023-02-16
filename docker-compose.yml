@@ -19,11 +19,12 @@ services:
       PAPER_PORT:
     volumes:
       - exchanges_api:/data/db
+    logging:
+      driver: "awslogs"
+      options:
+        awslogs-region: "ap-southeast-1"
+        awslogs-group: "mygroup"
+        tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
 volumes:
   exchanges_api:
-logging:
-  driver: "awslogs"
-  options:
-    awslogs-region: "ap-southeast-1"
-    awslogs-group: "mygroup"
-    tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
+
