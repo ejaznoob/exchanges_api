@@ -21,4 +21,9 @@ services:
       - exchanges_api:/data/db
 volumes:
   exchanges_api:
-
+logging:
+  driver: "awslogs"
+  options:
+    awslogs-region: "ap-southeast-1"
+    awslogs-group: "mygroup"
+    tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"

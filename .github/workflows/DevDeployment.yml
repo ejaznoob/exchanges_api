@@ -83,4 +83,4 @@ jobs:
           PORT=${{ VARS.PORT}}
           cd ${{ vars.HOST_TARGET_DIR_STAGING }}
           $HOME/.docker/cli-plugins/docker-compose down
-          $HOME/.docker/cli-plugins/docker-compose  --env-file .env --build --force-recreate --no-deps  -d  --log-driver=awslogs --log-opt awslogs-region=ap-southeast-1 --log-opt awslogs-group=exchangesapi
+          $HOME/.docker/cli-plugins/docker-compose --env-file .env --build --force-recreate --no-deps  -d  --log-driver=awslogs --log-opt awslogs-region=ap-southeast-1 --log-opt awslogs-group=exchangesapi
