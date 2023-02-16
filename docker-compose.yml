@@ -24,6 +24,6 @@ volumes:
 logging:
   driver: "awslogs"
   options:
-    awslogs-region: "us-east-1"
+    awslogs-region: "ap-southeast-1"
     awslogs-group: "mygroup"
     tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
