@@ -23,7 +23,7 @@ services:
       driver: "awslogs"
       options:
         awslogs-region: "ap-southeast-1"
-        awslogs-group: "mygroup"
+        awslogs-group: "exchangesapi"
         tag: "{{.ImageName}}/{{.Name}}/{{.ID}}"
 volumes:
   exchanges_api:
