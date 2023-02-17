@@ -39,9 +39,6 @@ jobs:
         ENV_DOCKER_PORT: ${{ VARS.DOCKER_PORT}}
         ENV_MONGOURL: ${{ secrets.MONGOURL}}
         ENV_PAPER_URL: ${{ VARS.PAPER_URL}}
-        ENV_AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
-        ENV_AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        ENV_AWS_AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN}}
 
     - name: Compress assets
       uses: montudor/action-zip@v1
@@ -68,6 +65,7 @@ jobs:
         port: 22
         script: |
           cd ${{ vars.HOST_TARGET_DIR_STAGING }} && unzip -o zipped.zip -d .
+
 
     - name: Refresh Server
       uses: appleboy/ssh-action@v0.1.7
